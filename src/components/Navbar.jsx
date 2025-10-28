@@ -15,10 +15,10 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
+    { name: 'Accueil', href: '#home' },
     { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
-    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'À propos', href: '#about' },
+    { name: 'Témoignages', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -29,32 +29,37 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 md:h-18">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-2"
           >
-            <TrendingUp className="h-8 w-8 text-primary-600" />
-            <span className="text-2xl font-bold text-gray-900">Apex Consulting</span>
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary-600 rounded-lg opacity-10"></div>
+              <TrendingUp className="h-7 w-7 md:h-8 md:w-8 text-primary-700 relative" strokeWidth={2.5} />
+            </div>
+            <span className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">Apex Consulting</span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-primary-600 font-medium transition-colors relative group"
+                className="text-gray-600 hover:text-primary-600 font-medium transition-colors relative group text-sm lg:text-base"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
               </a>
             ))}
-            <button className="bg-gradient-primary text-white px-6 py-2 rounded-lg font-semibold hover:shadow-glow transition-all duration-300 transform hover:-translate-y-0.5">
-              Get Started
-            </button>
+            <a href="#contact">
+              <button className="bg-gradient-primary text-white px-5 lg:px-6 py-2 lg:py-2.5 rounded-lg font-semibold hover:shadow-elegant transition-all duration-300 text-sm lg:text-base">
+                Contactez-nous
+              </button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -85,9 +90,11 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <button className="w-full bg-gradient-primary text-white px-6 py-2 rounded-lg font-semibold">
-              Get Started
-            </button>
+            <a href="#contact" onClick={() => setIsOpen(false)}>
+              <button className="w-full bg-gradient-primary text-white px-6 py-2 rounded-lg font-semibold">
+                Contactez-nous
+              </button>
+            </a>
           </div>
         </motion.div>
       )}

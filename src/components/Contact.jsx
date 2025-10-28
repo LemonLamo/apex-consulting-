@@ -6,30 +6,30 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      detail: 'contact@apexconsulting.com',
+      detail: 'contact@strategieplus.dz',
     },
     {
       icon: Phone,
-      title: 'Phone',
-      detail: '+1 (555) 123-4567',
+      title: 'Téléphone',
+      detail: '+213 (0) 23 45 67 89',
     },
     {
       icon: MapPin,
-      title: 'Office',
-      detail: '123 Business Plaza, Suite 100\nNew York, NY 10001',
+      title: 'Bureau',
+      detail: 'Cité Bir Mourad Raïs\nAlger, Algérie 16030',
     },
   ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for your message! We will get back to you within 24 hours.');
+    alert('Merci pour votre message ! Nous vous répondrons dans les 24 heures.');
     e.target.reset();
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -38,14 +38,13 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
           >
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
-              Get in Touch
+              Contactez-nous
             </span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-6">
-              Let's Start a Conversation
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6">
+              Commençons la Conversation
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Have a question or ready to get started? Reach out to our team and we'll get back to you
-              within 24 hours.
+            <p className="text-base md:text-lg text-gray-600 mb-8 leading-relaxed">
+              Une question ou prêt à démarrer ? Contactez notre équipe et nous vous répondrons dans les 24 heures.
             </p>
 
             {/* Contact Info */}
@@ -57,14 +56,14 @@ const Contact = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-4"
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 transition-all duration-300"
                 >
-                  <div className="bg-primary-100 p-3 rounded-lg">
-                    <info.icon className="h-6 w-6 text-primary-600" />
+                  <div className="bg-primary-100 p-3 rounded-lg shrink-0">
+                    <info.icon className="h-5 w-5 md:h-6 md:w-6 text-primary-600" strokeWidth={2} />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
-                    <p className="text-gray-600 whitespace-pre-line">{info.detail}</p>
+                    <p className="text-gray-600 whitespace-pre-line text-sm md:text-base">{info.detail}</p>
                   </div>
                 </motion.div>
               ))}
@@ -77,59 +76,59 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-slate-50 p-8 rounded-2xl"
+            className="bg-slate-50 p-6 md:p-8 rounded-2xl"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
               <div>
                 <input
                   type="text"
-                  placeholder="Your Name"
+                  placeholder="Votre Nom"
                   required
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 md:py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm md:text-base"
                 />
               </div>
               <div>
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder="Votre Email"
                   required
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 md:py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm md:text-base"
                 />
               </div>
               <div>
                 <input
                   type="text"
-                  placeholder="Company Name"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  placeholder="Nom de l'Entreprise"
+                  className="w-full px-4 py-3 md:py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm md:text-base"
                 />
               </div>
               <div>
                 <select
                   required
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 md:py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm md:text-base"
                 >
-                  <option value="">Select Service</option>
-                  <option value="strategy">Business Strategy</option>
-                  <option value="operations">Operations Optimization</option>
-                  <option value="digital">Digital Transformation</option>
-                  <option value="change">Change Management</option>
-                  <option value="analytics">Data Analytics</option>
-                  <option value="risk">Risk Management</option>
+                  <option value="">Sélectionner un Service</option>
+                  <option value="strategy">Stratégie d'Entreprise</option>
+                  <option value="operations">Optimisation des Opérations</option>
+                  <option value="digital">Transformation Digitale</option>
+                  <option value="change">Gestion du Changement</option>
+                  <option value="analytics">Analyse de Données</option>
+                  <option value="risk">Gestion des Risques</option>
                 </select>
               </div>
               <div>
                 <textarea
-                  placeholder="Tell us about your project"
+                  placeholder="Parlez-nous de votre projet"
                   rows="4"
                   required
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 md:py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none text-sm md:text-base"
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full bg-gradient-primary text-white px-8 py-4 rounded-lg font-semibold hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1"
+                className="w-full bg-gradient-primary text-white px-8 py-3 md:py-4 rounded-lg font-semibold hover:shadow-elegant transition-all duration-300 text-sm md:text-base"
               >
-                Send Message
+                Envoyer le Message
               </button>
             </form>
           </motion.div>
