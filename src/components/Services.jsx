@@ -80,14 +80,11 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="relative p-6 md:p-8 bg-white border-2 border-gray-100 rounded-2xl hover:border-primary-300 hover:shadow-elegant-lg transition-all duration-300 group"
+              className="relative p-6 md:p-8 bg-white border-2 border-gray-100 rounded-2xl transition-all duration-300 group cursor-pointer"
+              onClick={() => setSelectedService(service)}
             >
-              {/* Color accent bar */}
-              <div className="absolute top-0 left-0 w-1 h-16 bg-gradient-primary rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              
               {/* Icon */}
-              <div className="bg-gradient-to-br from-primary-50 to-primary-100 p-4 rounded-xl w-fit mb-6 group-hover:shadow-lg transition-all duration-300">
+              <div className="bg-gradient-to-br from-primary-50 to-primary-100 p-4 rounded-xl w-fit mb-6 transition-all duration-300">
                 <service.icon className="h-7 w-7 md:h-8 md:w-8 text-primary-600" strokeWidth={2} />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>

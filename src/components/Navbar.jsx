@@ -22,6 +22,15 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -49,13 +58,14 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors relative group text-sm lg:text-base"
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-gray-600 hover:text-primary-600 font-medium transition-colors relative group text-sm lg:text-base cursor-pointer"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
               </a>
             ))}
-            <a href="#contact">
+            <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>
               <button className="bg-gradient-primary text-white px-5 lg:px-6 py-2 lg:py-2.5 rounded-lg font-semibold hover:shadow-elegant transition-all duration-300 text-sm lg:text-base">
                 Contactez-nous
               </button>
@@ -66,6 +76,8 @@ const Navbar = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-gray-700 hover:text-primary-600"
+            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -84,13 +96,13 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="block text-gray-700 hover:text-primary-600 font-medium py-2"
-                onClick={() => setIsOpen(false)}
+                className="block text-gray-700 hover:text-primary-600 font-medium py-2 cursor-pointer"
+                onClick={(e) => handleNavClick(e, item.href)}
               >
                 {item.name}
               </a>
             ))}
-            <a href="#contact" onClick={() => setIsOpen(false)}>
+            <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>
               <button className="w-full bg-gradient-primary text-white px-6 py-2 rounded-lg font-semibold">
                 Contactez-nous
               </button>

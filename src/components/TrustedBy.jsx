@@ -15,7 +15,7 @@ const TrustedBy = () => {
       logo: '/assets/logos/air-algerie.svg'
     },
     { 
-      name: 'Condor Electronics', 
+      name: 'Condor', 
       logo: '/assets/logos/condor.svg'
     },
     { 
@@ -23,6 +23,9 @@ const TrustedBy = () => {
       logo: '/assets/logos/naftal.svg'
     },
   ];
+
+  // Duplicate the array for seamless infinite scroll
+  const duplicatedCompanies = [...companies, ...companies];
 
   return (
     <section className="py-16 md:py-20 bg-white border-y border-gray-100 relative overflow-hidden">
@@ -41,28 +44,44 @@ const TrustedBy = () => {
         >
           Ils nous font confiance
         </motion.p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 items-center">
-          {companies.map((company, index) => (
+        
+        {/* Infinite Sliding Carousel */}
+        <div className="relative">
+          <div className="overflow-hidden">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex items-center justify-center p-6 rounded-xl hover:bg-gray-50 transition-all duration-300 cursor-pointer group"
+              className="flex gap-12 md:gap-16"
+              animate={{
+                x: [0, -1920],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
+              }}
             >
-              <img 
-                src={company.logo} 
-                alt={company.name}
-                className="h-12 md:h-14 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300 filter grayscale group-hover:grayscale-0"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'block';
-                }}
-              />
-              <span className="hidden text-sm md:text-base font-semibold text-gray-700">{company.name}</span>
+              {duplicatedCompanies.map((company, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 flex items-center justify-center group"
+                >
+                  <div className="relative px-6">
+                    <img 
+                      src={company.logo} 
+                      alt={company.name}
+                      className="h-10 md:h-12 w-auto object-contain opacity-60 group-hover:opacity-100 transition-all duration-300 filter grayscale group-hover:grayscale-0 p-2 bg-white/50"
+                    />
+                  </div>
+                </div>
+              ))}
             </motion.div>
-          ))}
+          </div>
+          
+          {/* Gradient fade edges */}
+          <div className="absolute top-0 left-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 right-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
     </section>

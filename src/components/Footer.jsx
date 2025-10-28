@@ -1,18 +1,43 @@
 import { TrendingUp, Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
 
 const Footer = () => {
+  const handleLinkClick = (e, sectionId) => {
+    if (sectionId) {
+      e.preventDefault();
+      const element = document.querySelector(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const footerSections = [
     {
       title: 'Services',
-      links: ['Stratégie d\'Entreprise', 'Opérations', 'Transformation Digitale', 'Gestion du Changement'],
+      links: [
+        { name: 'Stratégie d\'Entreprise', href: '#services' },
+        { name: 'Opérations', href: '#services' },
+        { name: 'Transformation Digitale', href: '#services' },
+        { name: 'Gestion du Changement', href: '#services' }
+      ],
     },
     {
       title: 'Entreprise',
-      links: ['À Propos', 'Notre Équipe', 'Carrières', 'Actualités'],
+      links: [
+        { name: 'À Propos', href: '#about' },
+        { name: 'Notre Équipe', href: '#about' },
+        { name: 'Carrières', href: '#about' },
+        { name: 'Actualités', href: '#about' }
+      ],
     },
     {
       title: 'Ressources',
-      links: ['Blog', 'Études de Cas', 'Livres Blancs', 'Contact'],
+      links: [
+        { name: 'Blog', href: '#about' },
+        { name: 'Études de Cas', href: '#testimonials' },
+        { name: 'Livres Blancs', href: '#about' },
+        { name: 'Contact', href: '#contact' }
+      ],
     },
   ];
 
@@ -61,10 +86,11 @@ const Footer = () => {
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <a
-                      href="#"
-                      className="text-gray-400 hover:text-white transition-colors duration-200 text-sm md:text-base"
+                      href={link.href}
+                      onClick={(e) => handleLinkClick(e, link.href)}
+                      className="text-gray-400 hover:text-white transition-colors duration-200 text-sm md:text-base cursor-pointer"
                     >
-                      {link}
+                      {link.name}
                     </a>
                   </li>
                 ))}
