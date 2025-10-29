@@ -15,10 +15,10 @@ import BackToTop from './components/BackToTop'
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full">
       <ScrollProgress />
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden w-full">
         <Hero />
         <Features />
         <Services />

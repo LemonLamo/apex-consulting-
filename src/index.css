@@ -6,34 +6,43 @@
 html {
   scroll-behavior: smooth;
   min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 body {
   min-height: 100vh;
+  overflow-x: hidden !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
-/* Custom scrollbar */
+/* Hide scrollbar but keep functionality */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
+  background: transparent;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+/* For Firefox */
+* {
+  scrollbar-width: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #0d9488 0%, #f97316 100%);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #14b8a6 0%, #fb923c 100%);
+/* For IE and Edge */
+body {
+  -ms-overflow-style: none;
 }
 
 /* Selection color */
@@ -62,21 +71,31 @@ select:focus {
   transition: transform 0.2s ease-in-out;
 }
 
-/* Prevent layout shift and ensure full width */
-body {
-  overflow-x: hidden;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
+/* Prevent horizontal overflow globally */
 * {
   box-sizing: border-box;
 }
 
-/* Ensure all sections take full width */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}
+
+/* Ensure all sections take full width without overflow */
 section {
   width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
+}
+
+/* Prevent any element from causing horizontal scroll */
+.max-w-7xl {
+  max-width: min(80rem, 100vw);
+}
+
+/* Container elements */
+main, div {
   max-width: 100vw;
 }
 
