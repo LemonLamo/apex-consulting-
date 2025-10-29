@@ -20,7 +20,6 @@ function App() {
       <Navbar />
       <main className="flex-1 overflow-x-hidden w-full">
         <Hero />
-        <Features />
         <Services />
         <Process />
         <About />
