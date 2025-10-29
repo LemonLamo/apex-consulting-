@@ -63,67 +63,119 @@ const Timeline = () => {
         </motion.div>
 
         {/* Timeline */}
-        <div className="space-y-0">
-          {milestones.map((milestone, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
-              className="relative"
-            >
-              <div className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 0 ? '' : 'lg:flex-row-reverse'}`}>
-                {/* Content - Left side for even, Right side for odd */}
-                <div className={`${index % 2 === 0 ? 'lg:text-right lg:pr-12' : 'lg:order-2 lg:pl-12'}`}>
-                  <div className="inline-block lg:block">
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      className="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:border-primary-200 transition-all duration-300"
-                    >
-                      {/* Year badge */}
-                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3 ${milestone.color === 'primary' ? 'bg-primary-50 text-primary-700' : 'bg-accent-50 text-accent-700'}`}>
-                        <milestone.icon className="h-3.5 w-3.5" strokeWidth={2.5} />
-                        <span className="font-bold text-xs">{milestone.year}</span>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{milestone.title}</h3>
-                      <p className="text-gray-600 leading-relaxed text-sm">{milestone.description}</p>
-                    </motion.div>
-                  </div>
-                </div>
-
-                {/* Icon - Center (visible on large screens) */}
-                <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 z-10">
+        <div className="relative">
+          {/* Vertical line for mobile/tablet */}
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-200 via-accent-200 to-primary-200 lg:hidden"></div>
+          
+          <div className="space-y-8 lg:space-y-0">
+            {milestones.map((milestone, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15, duration: 0.6 }}
+                className="relative"
+              >
+                {/* Mobile/Tablet Layout - Vertical Timeline */}
+                <div className="lg:hidden flex gap-6 md:gap-8 items-start">
+                  {/* Icon Circle */}
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.15 + 0.3, duration: 0.4 }}
-                    className={`w-16 h-16 bg-gradient-to-br ${milestone.color === 'primary' ? 'from-primary-500 to-primary-600' : 'from-accent-500 to-accent-600'} rounded-full flex items-center justify-center shadow-lg border-4 border-white`}
+                    transition={{ delay: index * 0.15 + 0.2, type: "spring" }}
+                    className={`relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br ${
+                      milestone.color === 'primary' 
+                        ? 'from-primary-500 to-primary-600' 
+                        : 'from-accent-500 to-accent-600'
+                    } rounded-full flex items-center justify-center shadow-lg border-4 border-white`}
                   >
-                    <milestone.icon className="h-8 w-8 text-white" strokeWidth={2} />
+                    <milestone.icon className="h-6 w-6 md:h-8 md:w-8 text-white" strokeWidth={2.5} />
+                  </motion.div>
+
+                  {/* Content Card */}
+                  <motion.div
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="flex-1 bg-white rounded-2xl p-5 md:p-6 shadow-lg border border-gray-100 hover:border-primary-200 hover:shadow-xl transition-all duration-300"
+                  >
+                    {/* Year Badge */}
+                    <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3 ${
+                      milestone.color === 'primary' 
+                        ? 'bg-primary-100 text-primary-700' 
+                        : 'bg-accent-100 text-accent-700'
+                    }`}>
+                      <span className="font-bold text-sm md:text-base">{milestone.year}</span>
+                    </div>
+                    
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{milestone.title}</h3>
+                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">{milestone.description}</p>
                   </motion.div>
                 </div>
 
-                {/* Empty space for alternating layout */}
-                <div className={`hidden lg:block ${index % 2 === 0 ? 'lg:order-2' : ''}`}></div>
-              </div>
+                {/* Desktop Layout - Alternating Sides */}
+                <div className={`hidden lg:grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 0 ? '' : 'lg:flex-row-reverse'}`}>
+                  {/* Content - Left side for even, Right side for odd */}
+                  <div className={`${index % 2 === 0 ? 'lg:text-right lg:pr-12' : 'lg:order-2 lg:pl-12'}`}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className="inline-block bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-gray-100 hover:border-primary-200 hover:shadow-xl transition-all duration-300"
+                    >
+                      {/* Year badge */}
+                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 ${
+                        milestone.color === 'primary' 
+                          ? 'bg-primary-100 text-primary-700' 
+                          : 'bg-accent-100 text-accent-700'
+                      }`}>
+                        <milestone.icon className="h-4 w-4" strokeWidth={2.5} />
+                        <span className="font-bold text-base">{milestone.year}</span>
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{milestone.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
+                    </motion.div>
+                  </div>
 
-              {/* Connector line between milestones */}
-              {index < milestones.length - 1 && (
-                <div className="h-12 lg:h-16 flex justify-center lg:justify-start">
-                  <motion.div
-                    initial={{ scaleY: 0 }}
-                    whileInView={{ scaleY: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.15 + 0.5, duration: 0.4 }}
-                    className={`w-0.5 bg-gradient-to-b ${milestone.color === 'primary' ? 'from-primary-400/40 to-accent-400/40' : 'from-accent-400/40 to-primary-400/40'} origin-top lg:absolute lg:left-1/2 lg:-translate-x-1/2`}
-                  ></motion.div>
+                  {/* Icon - Center (visible on large screens only) */}
+                  <div className="absolute left-1/2 -translate-x-1/2 z-10">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 + 0.3, duration: 0.4, type: "spring" }}
+                      className={`w-20 h-20 bg-gradient-to-br ${
+                        milestone.color === 'primary' 
+                          ? 'from-primary-500 to-primary-600' 
+                          : 'from-accent-500 to-accent-600'
+                      } rounded-full flex items-center justify-center shadow-xl border-4 border-white`}
+                    >
+                      <milestone.icon className="h-10 w-10 text-white" strokeWidth={2.5} />
+                    </motion.div>
+                  </div>
+
+                  {/* Empty space for alternating layout */}
+                  <div className={`${index % 2 === 0 ? 'lg:order-2' : ''}`}></div>
                 </div>
-              )}
-            </motion.div>
-          ))}
+
+                {/* Connector line between milestones - Desktop only */}
+                {index < milestones.length - 1 && (
+                  <div className="hidden lg:block h-16">
+                    <motion.div
+                      initial={{ scaleY: 0 }}
+                      whileInView={{ scaleY: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 + 0.5, duration: 0.4 }}
+                      className={`w-0.5 h-full bg-gradient-to-b ${
+                        milestone.color === 'primary' 
+                          ? 'from-primary-400/40 to-accent-400/40' 
+                          : 'from-accent-400/40 to-primary-400/40'
+                      } absolute left-1/2 -translate-x-1/2`}
+                    ></motion.div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom decoration */}

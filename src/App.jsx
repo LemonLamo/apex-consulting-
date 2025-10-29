@@ -22,9 +22,9 @@ function App() {
         <Hero />
         <Features />
         <Services />
+        <Process />
         <About />
         <Timeline />
-        <Process />
         <Stats />
         <Testimonials />
         <CTA />
