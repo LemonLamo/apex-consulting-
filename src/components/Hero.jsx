@@ -9,31 +9,59 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-primary-50/20 to-accent-50/10">
-      {/* Animated background elements - softer */}
+    <section id="home" className="relative min-h-screen flex items-center py-20 md:py-28 overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
+      {/* Sophisticated mesh gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 opacity-60"></div>
+      
+      {/* Isometric cubes pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.08] dark:opacity-[0.04]">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="isometric-cubes" x="0" y="0" width="60" height="105" patternUnits="userSpaceOnUse">
+              {/* Left face */}
+              <path d="M30 0 L60 17.5 L60 52.5 L30 35 Z" fill="rgba(13, 148, 136, 0.3)" stroke="rgba(13, 148, 136, 0.4)" strokeWidth="0.5"/>
+              {/* Right face */}
+              <path d="M30 0 L0 17.5 L0 52.5 L30 35 Z" fill="rgba(13, 148, 136, 0.15)" stroke="rgba(13, 148, 136, 0.4)" strokeWidth="0.5"/>
+              {/* Top face */}
+              <path d="M30 0 L60 17.5 L30 35 L0 17.5 Z" fill="rgba(13, 148, 136, 0.5)" stroke="rgba(13, 148, 136, 0.4)" strokeWidth="0.5"/>
+              
+              {/* Second row - offset */}
+              <path d="M30 70 L60 87.5 L60 122.5 L30 105 Z" fill="rgba(13, 148, 136, 0.3)" stroke="rgba(13, 148, 136, 0.4)" strokeWidth="0.5"/>
+              <path d="M30 70 L0 87.5 L0 122.5 L30 105 Z" fill="rgba(13, 148, 136, 0.15)" stroke="rgba(13, 148, 136, 0.4)" strokeWidth="0.5"/>
+              <path d="M30 70 L60 87.5 L30 105 L0 87.5 Z" fill="rgba(13, 148, 136, 0.5)" stroke="rgba(13, 148, 136, 0.4)" strokeWidth="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#isometric-cubes)" />
+        </svg>
+      </div>
+
+      {/* Animated gradient orbs - softer and larger */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
           animate={{ 
-            scale: [1, 1.1, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 right-0 w-80 h-80 bg-primary-200/20 rounded-full blur-3xl"
-        />
-        <motion.div 
-          animate={{ 
+            x: [0, 100, 0],
+            y: [0, -50, 0],
             scale: [1, 1.2, 1],
-            rotate: [0, -90, 0],
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-0 left-0 w-80 h-80 bg-accent-200/20 rounded-full blur-3xl"
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-primary-400/20 dark:bg-primary-500/10 rounded-full blur-3xl"
         />
         <motion.div 
           animate={{ 
-            y: [0, -30, 0],
+            x: [0, -80, 0],
+            y: [0, 100, 0],
+            scale: [1, 1.3, 1],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary-300/10 rounded-full blur-3xl"
+          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-10 left-[5%] w-[600px] h-[600px] bg-accent-400/15 dark:bg-accent-500/8 rounded-full blur-3xl"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary-300/20 dark:bg-primary-600/8 rounded-full blur-3xl"
         />
       </div>
       
@@ -50,14 +78,14 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-primary-600 px-4 py-2 rounded-full mb-6 shadow-lg shadow-primary-500/20"
+              className="inline-flex items-center gap-2 bg-primary-600 dark:bg-primary-500 px-4 py-2 rounded-full mb-6 shadow-lg shadow-primary-500/20"
             >
               <Sparkles className="h-3.5 w-3.5 text-white animate-pulse" strokeWidth={2.5} />
               <span className="text-xs font-bold text-white tracking-wide">EXPERTISE CERTIFIÉE</span>
             </motion.div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] mb-5">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-[1.1] mb-5">
               Propulsez Votre{' '}
               <span className="relative inline-block">
                 <span className="text-gradient">Succès</span>
@@ -65,12 +93,12 @@ const Hero = () => {
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full origin-left"
+                  className="absolute -bottom-1 left-0 right-0 h-1 bg-primary-500 rounded-full origin-left"
                 />
               </span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed font-light">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed font-light">
               Solutions stratégiques sur-mesure pour les entreprises algériennes visionnaires.
             </p>
 
@@ -81,7 +109,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <button className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-3.5 rounded-xl font-bold shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/30 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto group text-sm md:text-base">
+                <button className="bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white px-8 py-3.5 rounded-xl font-bold shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/30 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto group text-sm md:text-base">
                   Consultation Gratuite
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
                 </button>
@@ -91,7 +119,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <button className="bg-white border-2 border-gray-200 text-gray-700 px-8 py-3.5 rounded-xl font-bold hover:border-primary-500 hover:text-primary-600 hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base">
+                <button className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 px-8 py-3.5 rounded-xl font-bold hover:border-primary-500 dark:hover:border-primary-400 hover:text-primary-600 dark:hover:text-primary-400 hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base">
                   Nos Services
                 </button>
               </motion.a>
@@ -105,13 +133,13 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.15, duration: 0.6 }}
-                  className="bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 shadow-md border border-gray-100"
+                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-3 md:p-4 shadow-md border border-gray-100 dark:border-gray-700"
                 >
                   <div className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${stat.color} mb-2`}>
                     <stat.icon className="h-4 w-4 text-white" strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-0.5">{stat.value}</h3>
-                  <p className="text-[10px] md:text-xs text-gray-600 font-medium">{stat.label}</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-0.5">{stat.value}</h3>
+                  <p className="text-[10px] md:text-xs text-gray-600 dark:text-gray-400 font-medium">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -140,14 +168,14 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.6 }}
-              className="absolute -bottom-4 -left-4 bg-white rounded-xl p-5 shadow-xl border border-gray-100 max-w-[200px]"
+              className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-xl p-5 shadow-xl border border-gray-100 dark:border-gray-700 max-w-[200px]"
             >
               <div className="flex items-center gap-3">
                 <div className="bg-gradient-to-br from-accent-500 to-accent-600 rounded-lg p-2.5">
                   <Award className="h-6 w-6 text-white" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-600 font-medium mb-0.5">Taux de Réussite</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 font-medium mb-0.5">Taux de Réussite</p>
                   <p className="text-2xl font-bold text-gradient">95%</p>
                 </div>
               </div>
@@ -158,7 +186,7 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.8, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
-              className="absolute -top-4 -right-4 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl p-4 shadow-xl"
+              className="absolute -top-4 -right-4 bg-primary-600 dark:bg-primary-500 rounded-xl p-4 shadow-xl"
             >
               <div className="flex items-center gap-1.5 mb-1.5">
                 {[...Array(5)].map((_, i) => (
