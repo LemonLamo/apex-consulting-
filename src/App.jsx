@@ -15,19 +15,21 @@ import BackToTop from './components/BackToTop'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen flex flex-col bg-white">
       <ScrollProgress />
       <Navbar />
-      <Hero />
-      <Features />
-      <Services />
-      <About />
-      <Timeline />
-      <Process />
-      <Stats />
-      <Testimonials />
-      <CTA />
-      <Contact />
+      <main className="flex-1">
+        <Hero />
+        <Features />
+        <Services />
+        <About />
+        <Timeline />
+        <Process />
+        <Stats />
+        <Testimonials />
+        <CTA />
+        <Contact />
+      </main>
       <Footer />
       <BackToTop />
     </div>

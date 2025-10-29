@@ -2,9 +2,20 @@
 
 @import "tailwindcss";
 
-/* Smooth scrolling */
+/* Smooth scrolling and full height */
 html {
   scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Custom scrollbar */
@@ -51,9 +62,22 @@ select:focus {
   transition: transform 0.2s ease-in-out;
 }
 
-/* Prevent layout shift */
+/* Prevent layout shift and ensure full width */
 body {
   overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure all sections take full width */
+section {
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Ensure images are responsive */
